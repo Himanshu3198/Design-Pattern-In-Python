@@ -81,5 +81,32 @@ s="hello"
 print(s[1])
 s[::-1] #reverse
 s.upper()
-print(s[0:3])
+# print(s[0:3])
+
+
+#=====================Stack demo=====================
+
+stack = []
+
+stack.append(5)
+stack.append(10)
+stack.append(15)
+
+print(f"stack pop(): {stack.pop()}")
+print(f"stack top(): {stack[-1]}")
+size = len(stack)
+
+
+#=============== Queue demo==============
+
+queue = []
+
+queue.append(5)
+queue.append(10)
+queue.append(15)
+
+print(f"queue pop(): {queue.pop(0)}")
+print(f"queue peek(): {queue[0]}")
+qsz = len(queue)
+
 
