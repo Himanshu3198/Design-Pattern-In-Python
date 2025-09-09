@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import defaultdict,deque
 from unittest import defaultTestLoader
 
 
@@ -109,4 +109,16 @@ print(f"queue pop(): {queue.pop(0)}")
 print(f"queue peek(): {queue[0]}")
 qsz = len(queue)
 
+# ===== DEQUE DEMO ======
+dq = deque([])
+dq.append(1)
+dq.appendleft(2)
+dq.append(3)
+dq.append(4)
+dq.append(5)
 
+
+print(dq)
+dq.pop()
+dq.popleft()
+print(dq)
