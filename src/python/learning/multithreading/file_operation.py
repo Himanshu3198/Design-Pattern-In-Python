@@ -8,7 +8,7 @@ from typing import Dict
 file_dir = r"C:\Users\himan\PycharmProjects\DesignInPython\src\python\learning\multithreading\output"
 os.makedirs(file_dir, exist_ok=True)
 
-LARGE_TEXT = "This is a large content block. " * 500_000  # ~14 MB per file
+LARGE_TEXT = "This is a large content block. " * 500_000_00  # ~14 MB per file
 
 mp1: Dict[str, str] = {
     "file1.txt": LARGE_TEXT,
