@@ -1,5 +1,4 @@
 from src.low_level_design.atm_design.account_repository import AccountRepository
-from src.low_level_design.atm_design.iaccount_service import IAccountService
 from src.low_level_design.atm_design.iaccount_service_impl import IAccountServiceImpl
 
 
