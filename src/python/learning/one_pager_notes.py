@@ -153,5 +153,29 @@ class Solution:
         return "".join(ans)
 
 
+# 2d array memoization
+class Solution:
+    def solve(self,costs,dp,idx,prev)->int:
+         if idx == len(costs):
+            return 0
+         if (idx,prev) in dp:
+             return dp[(idx,prev)]
+        
+         res = float('inf')
+         for color in range(0,3):
+            if color == prev :
+                continue
+
+            ans = costs[idx][color]+self.solve(costs,dp,idx+1,color)
+            res = min(res,ans)
+         dp[(idx,prev)] = res
+         return res
+    def minCost(self, costs: List[List[int]]) -> int:
+
+        dp = {}
+
+        return min(costs[0][0]+self.solve(costs,dp,1,0),costs[0][1]+self.solve(costs,dp,1,1),costs[0][2]+self.solve(costs,dp,1,2))
+        
+
 
 
