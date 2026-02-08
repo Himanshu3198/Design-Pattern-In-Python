@@ -266,6 +266,29 @@ class Solution:
                 left +=1
         
         return res
+
+
+import heapq
+
+
+class Solution:
+
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+
+        max_heap = []
+        res = []
+
+        for i,(x,y) in enumerate(points):
+            dist = x*x+y*y
+            heapq.heappush(max_heap,(-dist,i))
+            if len(max_heap) > k:
+                heapq.heappop(max_heap)
+        
+        while len(max_heap) > 0:
+            _,idx =  heapq.heappop(max_heap)
+            res.append(points[idx])
+        return res
+        
                 
 
         
