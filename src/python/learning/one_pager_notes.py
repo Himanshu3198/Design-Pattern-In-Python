@@ -241,3 +241,32 @@ class Codec:
 # codec = Codec()
 # codec.decode(codec.encode(strs))
 
+
+
+from collections import deque
+class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+
+        dq = deque()
+        left = 0
+        res = []
+
+        for right in range(0,len(nums)):
+
+            while dq and dq[-1] < nums[right]:
+                  dq.pop()
+            
+            dq.append(nums[right])
+            window = right-left+1
+
+            if window == k:
+                res.append(dq[0])
+                if dq and dq[0] == nums[left]:
+                    dq.popleft()
+                left +=1
+        
+        return res
+                
+
+        
+
