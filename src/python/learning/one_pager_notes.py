@@ -175,7 +175,153 @@ class Solution:
         dp = {}
 
         return min(costs[0][0]+self.solve(costs,dp,1,0),costs[0][1]+self.solve(costs,dp,1,1),costs[0][2]+self.solve(costs,dp,1,2))
+
+
+
+# queue + sliding window
+class Solution:
+    def canReach(self, s: str, minJump: int, maxJump: int) -> bool:
+
+        n = len(s)
+        if s[n-1]  == '1' or s[0] == '1':
+            return False
+
+        q = []
+        q.append(0)
+        so_far = 0
+        
+        while q:
+
+                curr = q.pop(0)
+                if curr >= n-1:
+                    return True
+                start = max(curr+minJump,so_far+1)
+                end = min(curr+maxJump,n-1)
+                for j in range(start,end+1):
+                    if j <= n-1 and s[j] == '0':
+                       q.append(j)       
+                so_far = end
+            
+        return False
+
+
+
+class Codec:
+    def encode(self, strs: List[str]) -> str:
+        """Encodes a list of strings to a single string.
+        """
+        encode = []
+        for s in strs:
+             encode.append(f"{len(s)}#{s}")
+        
+        return ''.join(encode)
+        
+
+    def decode(self, s: str) -> List[str]:
+        """Decodes a single string to a list of strings.
+        """
+        ans = []
+        curr = ""
+        i = 0
+        while i < len(s):
+
+            j = i
+            while s[j] != '#':
+               j  += 1
+            
+            sz = int(s[i:j])
+            ans.append(s[j+1:j+1+sz])
+            i = j+1+sz
+
+        return ans
         
 
 
+# Your Codec object will be instantiated and called as such:
+# codec = Codec()
+# codec.decode(codec.encode(strs))
+
+
+
+from collections import deque
+class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+
+        dq = deque()
+        left = 0
+        res = []
+
+        for right in range(0,len(nums)):
+
+            while dq and dq[-1] < nums[right]:
+                  dq.pop()
+            
+            dq.append(nums[right])
+            window = right-left+1
+
+            if window == k:
+                res.append(dq[0])
+                if dq and dq[0] == nums[left]:
+                    dq.popleft()
+                left +=1
+        
+        return res
+
+
+import heapq
+
+
+class Solution:
+
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+
+        max_heap = []
+        res = []
+
+        for i,(x,y) in enumerate(points):
+            dist = x*x+y*y
+            heapq.heappush(max_heap,(-dist,i))
+            if len(max_heap) > k:
+                heapq.heappop(max_heap)
+        
+        while len(max_heap) > 0:
+            _,idx =  heapq.heappop(max_heap)
+            res.append(points[idx])
+        return res
+        
+                
+
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        if not digits:
+           return []
+
+        # Mapping of digits to letters
+        key_map = {
+            '2': "abc",
+            '3': "def",
+            '4': "ghi",
+            '5': "jkl",
+            '6': "mno",
+            '7': "pqrs",
+            '8': "tuv",
+            '9': "wxyz"
+        }
+        ans = []
+        res = []
+        def solve(res:List[str],idx:int)->None:
+            if idx == len(digits):
+                ans.append(''.join(res))
+                return
+            s = key_map.get(digits[idx],"")
+            for c in s:
+                res.append(c)
+                solve(res,idx+1)
+                res.pop()
+        solve(res,0)
+        return ans
+
+        
+        
+        
 
