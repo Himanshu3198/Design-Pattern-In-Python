@@ -1,6 +1,12 @@
 import copy
 from collections import deque, defaultdict
 import heapq
+
+
+def swap(arr,x1,y)->None:
+     temp = arr[x1]
+     arr[x1] = arr[y]
+     arr[y] = temp
 fruits = ["apple","grapes","mango"]
 
 for index,fruit in enumerate(fruits):
@@ -103,4 +109,10 @@ for k, values in map1.items():
     print(f"k={k}")
     for v in values:
         print(f"v={v}")
+
+
+
+arr2 = [1,2,3,4]
+swap(arr2,0,3)
+print(arr2)
 
