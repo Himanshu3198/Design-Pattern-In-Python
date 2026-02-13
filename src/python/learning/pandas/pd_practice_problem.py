@@ -42,9 +42,22 @@ print("Find the top 2 highest-paid employees.")
 sort = df.sort_values(by="salary",ascending=False)
 print(sort.iloc[0:2,[1,3]])
 print("Count how many employees are in each department.")
-count = df.groupby("dept").value_counts()
+count = df.groupby("dept")["id"].count()
 print(count)
 
 print("Find employees whose name starts with R.")
 name_mask = df["name"].str.startswith("R")
 print(df.loc[name_mask,:])
+
+
+print("Find the average salary per department.")
+print(df.groupby("dept")["salary"].mean())
+print("max salary per department")
+print(df.groupby("dept")["salary"].max())
+print("min salary per department")
+print(df.groupby("dept")["salary"].min())
+
+print("Increase salary by 5% for employees earning less than 60,000.")
+df.loc[df["salary"] < 60000,"salary"] *=(5/100)
+print(df)
+

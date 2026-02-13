@@ -1,4 +1,4 @@
-# iterator - you can loop over one element at time  and it has next keyword to iterate over next element and it sore the state-Stores current state Netflix episode pointer — remembers where you stopped.
+# iterator - you can loop over one element at time and it has next keyword to iterate over next element and it sore the state-Stores current state Netflix episode pointer — remembers where you stopped.
 
 nums = [1,2,3]
 it = iter(nums)
