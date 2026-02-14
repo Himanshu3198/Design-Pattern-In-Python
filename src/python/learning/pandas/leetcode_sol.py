@@ -9,3 +9,7 @@ def second_highest_salary(emp: pd.DataFrame) -> pd.DataFrame:
     if len(rec) < 2:
         return pd.DataFrame({"SecondHighestSalary":[None]})
     return  pd.DataFrame({"SecondHighestSalary":[rec.iloc[1]]})
+
+def duplicate_emails(person: pd.DataFrame) -> pd.DataFrame:
+    df = person[person.duplicated("email")]
+    return df[["email"]].drop_duplicates().rename(columns={"email":"Email"})
