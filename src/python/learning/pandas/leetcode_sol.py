@@ -13,3 +13,11 @@ def second_highest_salary(emp: pd.DataFrame) -> pd.DataFrame:
 def duplicate_emails(person: pd.DataFrame) -> pd.DataFrame:
     df = person[person.duplicated("email")]
     return df[["email"]].drop_duplicates().rename(columns={"email":"Email"})
+
+
+import pandas as pd
+
+def find_customers(customers: pd.DataFrame, orders: pd.DataFrame) -> pd.DataFrame:
+    filtered = customers[~customers["id"].isin(orders["customerId"])]
+    filtered_name = filtered[["name"]]
+    return filtered_name.rename(columns={"name":"Customers"})
