@@ -321,7 +321,29 @@ class Solution:
         solve(res,0)
         return ans
 
+
+
+class Solution:
+    def firstUniqueFreq(self, nums: List[int]) -> int:
+        freq = Counter(nums)
+        mp1 = defaultdict(list)
+
+        for key,count in freq.items():
+            mp1[count].append(key)
+
+        seen = set()
+        for f,arr in mp1.items():
+            if len(arr) == 1:
+                seen.add(arr[0])
         
+        ans = -1
+        for x in nums:
+            if x in seen:
+                return x
+        return ans
+        
+
+
         
         
 
