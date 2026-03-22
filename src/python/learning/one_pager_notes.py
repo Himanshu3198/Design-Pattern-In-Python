@@ -341,8 +341,26 @@ class Solution:
             if x in seen:
                 return x
         return ans
-        
 
+from typing import List
+
+class Solution:
+    def bestTower(self, towers: List[List[int]], center: List[int], radius: int) -> List[int]:
+        
+        res = []
+
+        for tower in towers:
+            dx = abs(center[0] - tower[0])
+            dy = abs(center[1] - tower[1])
+            dist = dx  + dy 
+            if dist <= radius:
+                res.append([tower[2], tower[0], tower[1]])
+
+        if not res:
+            return [-1,-1]
+
+        res.sort(key=lambda x: (-x[0], x[1], x[2]))
+        return [res[0][1], res[0][2]]
 
         
         
